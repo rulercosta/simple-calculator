@@ -1,3 +1,51 @@
+function isMobileDevice() {
+    const mobilePhonePatterns = [
+        /(?!.*tablet).*android.*mobile/i,  
+        /iPhone/i,                        
+        /iPod/i,                          
+        /webOS/i,                         
+        /BlackBerry/i,                    
+        /Windows Phone/i,                 
+        /Opera Mini/i,                    
+        /IEMobile/i                       
+    ];
+
+    const userAgent = navigator.userAgent;
+
+    const isMobilePhone = mobilePhonePatterns.some(pattern => pattern.test(userAgent));
+
+    const hasMobileDimensions = window.matchMedia(
+        '(max-width: 767px) and (max-height: 1024px) and (orientation: portrait), ' +
+        '(max-width: 1024px) and (max-height: 767px) and (orientation: landscape)'
+    ).matches;
+
+    return isMobilePhone && hasMobileDimensions;
+}
+
+function checkDevice() {
+    const calculator = document.getElementById('calculator');
+    let overlay = document.getElementById('device-overlay');
+    
+    if (!isMobileDevice()) {
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'device-overlay';
+            overlay.textContent = 'This app is not compatible with your device.';
+            document.body.appendChild(overlay);
+        }
+        calculator.style.display = 'none';
+        overlay.style.display = 'flex';
+    } else {
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+        calculator.style.display = 'flex';
+    }
+}
+
+window.addEventListener('load', checkDevice);
+window.addEventListener('resize', checkDevice);
+
 const operationDisplay = document.getElementById("operationDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
 let currentValue = "";  
@@ -6,6 +54,44 @@ let operator = null;
 let shouldResetDisplay = false;
 let openParenCount = 0;
 let hasEvaluated = false;
+
+const DEFAULT_FONT_SIZE = 4.5;
+
+let initialFontSize;
+
+window.addEventListener('load', () => {
+    checkDevice();
+    initialFontSize = window.getComputedStyle(resultDisplay).fontSize;
+});
+
+function getTextWidth(text, font) {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = font;
+    return context.measureText(text).width;
+}
+
+function adjustResultDisplaySize(text) {
+    if (!text) return;
+    
+    const display = resultDisplay;
+    const container = display.parentElement;
+    const containerWidth = container.clientWidth - 40; 
+    const computedStyle = window.getComputedStyle(display);
+    let fontSize = 4.5; 
+    
+    while (fontSize > 1.5) {
+        const font = `${fontSize}rem -apple-system, BlinkMacSystemFont, sans-serif`;
+        const textWidth = getTextWidth(text, font);
+        
+        if (textWidth <= containerWidth) {
+            break;
+        }
+        fontSize -= 0.1;
+    }
+    
+    display.style.fontSize = `${Math.max(1.5, fontSize)}rem`;
+}
 
 function factorial(n) {
     n = parseFloat(n);
@@ -61,8 +147,11 @@ function splitExpression(expr) {
                 tokens.push(number);
                 number = '';
             }
-            tokens.push(char + (expr[i + 1] || ''));
-            i++;
+            let restOfExpression = expr.slice(i + 1);
+            let nextOperatorIndex = restOfExpression.search(/[+\-×÷^%]/);
+            if (nextOperatorIndex === -1) nextOperatorIndex = restOfExpression.length;
+            tokens.push('√' + restOfExpression.slice(0, nextOperatorIndex));
+            i += nextOperatorIndex;
         } else if (char === '!') {  
             if (number) {
                 tokens.push(number + '!');
@@ -220,11 +309,12 @@ function clearAll() {
     operator = null;
     openParenCount = 0;
     operationDisplay.value = "";
-    resultDisplay.value = "";
+    resultDisplay.value = "0";
     hasEvaluated = false;  
     
     const clearBtn = document.getElementById('clearBtn');
     clearBtn.textContent = 'AC';
+    resultDisplay.style.fontSize = initialFontSize;
 }
 
 function clearOne() {
@@ -266,6 +356,14 @@ function toggleSign() {
     updateDisplay();
 }
 
+function formatNumber(number) {
+    if (typeof number !== 'number' || !isFinite(number)) return number;
+    
+    const parts = number.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+}
+
 function calculate() {
     if (!currentValue) return;
     
@@ -273,14 +371,18 @@ function calculate() {
         const result = calculateExpression(currentValue);
         if (result === "ERROR") {
             resultDisplay.value = "ERROR";
+            resultDisplay.style.fontSize = initialFontSize;
             return;
         }
         
-        resultDisplay.value = result;
-        currentValue = result.toString();
-        hasEvaluated = true;  
+        const formattedResult = formatNumber(parseFloat(result));
+        resultDisplay.value = formattedResult;
+        adjustResultDisplaySize(formattedResult);
+        currentValue = result.toString(); 
+        hasEvaluated = true;
     } catch (e) {
         resultDisplay.value = "ERROR";
+        resultDisplay.style.fontSize = initialFontSize;
     }
 }
 
@@ -297,7 +399,7 @@ function updateDisplay() {
     const displayWidth = operationDisplay.clientWidth;
     if (!currentValue) {
         operationDisplay.value = "";
-        resultDisplay.value = "";
+        resultDisplay.value = "0";
         return;
     }
 
@@ -315,6 +417,6 @@ function updateDisplay() {
     resultDisplay.value = "";
     
     const clearBtn = document.getElementById('clearBtn');
-    clearBtn.textContent = currentValue ? '⌧' : 'AC';
+    clearBtn.textContent = currentValue ? 'C' : 'AC';
     clearBtn.onclick = currentValue ? clearOne : clearAll;
 }
