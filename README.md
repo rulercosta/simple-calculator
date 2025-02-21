@@ -13,20 +13,20 @@
 
 ### 🚀 Key Features
 
-<table>
-<tr>
-<td>
+<div align="center">
 
-- 📱 **Mobile-first Design**
-- 🌙 **Dark Mode Interface**
-- ✨ **iOS-style UI/UX**
-- 🔢 **Advanced Operations**
-- 💾 **Offline Capable**
-- 📲 **Installable on Devices**
+| Feature Highlights |
+|-------------------|
+| 📱 **Responsive Design** - Works seamlessly across all devices |
+| 🌙 **Dark Mode Interface** - Easy on the eyes |
+| ✨ **iOS-style UI/UX** - Familiar and intuitive interface |
+| 🔢 **Advanced Operations** - Beyond basic calculations |
+| 💾 **Offline Capable** - Works without internet |
+| 📲 **PWA Ready** - Install on any device |
 
-</td>
-</tr>
-</table>
+</div>
+
+### 📸 App in Action
 
 <div align="center">
 
@@ -34,41 +34,19 @@
 
 </div>
 
-### 📸 App in Action
-
-<div align="center">
-  <img src="static/Screenshot1.jpg" alt="Loading Screen" width="250" style="margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-  <img src="static/Screenshot2.jpg" alt="Empty State" width="250" style="margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-  <img src="static/Screenshot3.jpg" alt="Calculator in Action" width="250" style="margin: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-</div>
-
 ### 🧮 Operations Support
 
-<table>
-<tr>
-<td>Basic Operations</td>
-<td>Advanced Features</td>
-</tr>
-<tr>
-<td>
+<div align="center">
 
-- ➕ Addition
-- ➖ Subtraction
-- ✖️ Multiplication
-- ➗ Division
+| Basic Operations | Advanced Features |
+|-----------------|-------------------|
+| ➕ Addition | 📐 Square Root (√) |
+| ➖ Subtraction | 🔄 Pi (π) Constant |
+| ✖️ Multiplication | ❗ Factorial (!) |
+| ➗ Division | 💯 Percentage |
+| | 🔋 Powers (^) |
 
-</td>
-<td>
-
-- 📐 Square Root (√)
-- 🔄 Pi (π) Constant
-- ❗ Factorial (!)
-- 💯 Percentage
-- 🔋 Powers (^)
-
-</td>
-</tr>
-</table>
+</div>
 
 ### 💻 Tech Stack
 
@@ -80,10 +58,6 @@
 ![PWA](https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)
 
 </div>
-
-### 📱 Device Compatibility
-
-> 💡 This calculator is optimized for mobile devices. Desktop users will see a compatibility notice.
 
 ### 📄 License
 
