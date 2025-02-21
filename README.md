@@ -34,20 +34,6 @@
 
 </div>
 
-### 🧮 Operations Support
-
-<div align="center">
-
-| Basic Operations | Advanced Features |
-|-----------------|-------------------|
-| ➕ Addition | 📐 Square Root (√) |
-| ➖ Subtraction | 🔄 Pi (π) Constant |
-| ✖️ Multiplication | ❗ Factorial (!) |
-| ➗ Division | 💯 Percentage |
-| | 🔋 Powers (^) |
-
-</div>
-
 ### 💻 Tech Stack
 
 <div align="center">
