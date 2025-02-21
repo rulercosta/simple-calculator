@@ -1,51 +1,3 @@
-function isMobileDevice() {
-    const mobilePhonePatterns = [
-        /(?!.*tablet).*android.*mobile/i,  
-        /iPhone/i,                        
-        /iPod/i,                          
-        /webOS/i,                         
-        /BlackBerry/i,                    
-        /Windows Phone/i,                 
-        /Opera Mini/i,                    
-        /IEMobile/i                       
-    ];
-
-    const userAgent = navigator.userAgent;
-
-    const isMobilePhone = mobilePhonePatterns.some(pattern => pattern.test(userAgent));
-
-    const hasMobileDimensions = window.matchMedia(
-        '(max-width: 767px) and (max-height: 1024px) and (orientation: portrait), ' +
-        '(max-width: 1024px) and (max-height: 767px) and (orientation: landscape)'
-    ).matches;
-
-    return isMobilePhone && hasMobileDimensions;
-}
-
-function checkDevice() {
-    const calculator = document.getElementById('calculator');
-    let overlay = document.getElementById('device-overlay');
-    
-    if (!isMobileDevice()) {
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'device-overlay';
-            overlay.textContent = 'This app is not compatible with your device.';
-            document.body.appendChild(overlay);
-        }
-        calculator.style.display = 'none';
-        overlay.style.display = 'flex';
-    } else {
-        if (overlay) {
-            overlay.style.display = 'none';
-        }
-        calculator.style.display = 'flex';
-    }
-}
-
-window.addEventListener('load', checkDevice);
-window.addEventListener('resize', checkDevice);
-
 const operationDisplay = document.getElementById("operationDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
 let currentValue = "";  
@@ -60,7 +12,6 @@ const DEFAULT_FONT_SIZE = 4.5;
 let initialFontSize;
 
 window.addEventListener('load', () => {
-    checkDevice();
     initialFontSize = window.getComputedStyle(resultDisplay).fontSize;
 });
 
