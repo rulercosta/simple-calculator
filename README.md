@@ -30,7 +30,7 @@
 
 <div align="center">
 
-![Demo GIF](static/Screenrecorder.gif)
+<img src="static/Screenrecorder.gif" alt="Demo GIF" width="300">
 
 </div>
 
@@ -50,5 +50,5 @@
 Released under the [Unlicense](LICENSE). This is free and unencumbered software released into the public domain.
 
 <div align="center">
-  <sub>Built with ❤️ by developers, for developers</sub>
+  <sub>Built with ❤️ by rulercosta</sub>
 </div>
