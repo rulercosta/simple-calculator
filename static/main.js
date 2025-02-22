@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', Calculator.init);
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('../sw.js')
+        navigator.serviceWorker.register('/simple-calculator/sw.js')
             .then(registration => {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
             })
