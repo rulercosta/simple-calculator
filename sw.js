@@ -11,7 +11,11 @@ const urlsToCache = [
   '/simple-calculator/static/apple-touch-icon.png',
   '/simple-calculator/static/favicon-32x32.png',
   '/simple-calculator/static/favicon-16x16.png',
-  '/simple-calculator/static/favicon.ico'
+  '/simple-calculator/static/favicon.ico',
+  'https://fonts.cdnfonts.com/css/sf-pro-display',
+  'https://fonts.cdnfonts.com/s/15861/SFPRODISPLAYREGULAR.woff',
+  'https://fonts.cdnfonts.com/s/15861/SFPRODISPLAYMEDIUM.woff',
+  'https://fonts.cdnfonts.com/s/15861/SFPRODISPLAYBOLD.woff'  
 ];
 
 self.addEventListener('install', event => {
