@@ -37,7 +37,13 @@ document.addEventListener('DOMContentLoaded', Calculator.init);
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/simple-calculator/sw.js')
+        const basePath = window.location.pathname.includes('simple-calculator') 
+            ? '/simple-calculator'
+            : '';
+        
+        navigator.serviceWorker.register(`${basePath}/sw.js`, {
+            scope: `${basePath}/`
+        })
             .then(registration => {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
             })
