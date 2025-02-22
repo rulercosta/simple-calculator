@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="static/android-chrome-192x192.png" alt="Calculator Icon" width="100">
+  <img src="static/app-icon.png" alt="Calculator Icon" width="100">
   <h1>✨ Simple Calculator ✨</h1>
 
   [![PWA Ready](https://img.shields.io/badge/PWA-Ready-blue?style=for-the-badge&logo=pwa)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
