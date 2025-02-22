@@ -21,6 +21,10 @@ function setupEnvironment() {
             .then(response => response.text())
             .then(markdown => {
                 if (readmeContainer && window.marked) {
+                    readmeContainer.style.display = 'block';
+                    readmeContainer.style.padding = '20px';
+                    readmeContainer.style.maxWidth = '800px';
+                    readmeContainer.style.margin = '0 auto';                    
                     readmeContainer.innerHTML = marked.parse(markdown);
                 }
             })
