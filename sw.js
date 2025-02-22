@@ -1,17 +1,17 @@
 const CACHE_NAME = 'calculator-v1';
 const urlsToCache = [
-  './',
-  './index.html',
-  './static/styles.css',
-  './static/script.js',
-  './static/manifest.json',
-  './README.md',
-  './static/android-chrome-192x192.png',
-  './static/android-chrome-512x512.png',
-  './static/apple-touch-icon.png',
-  './static/favicon-32x32.png',
-  './static/favicon-16x16.png',
-  './static/favicon.ico'
+  '/simple-calculator/',
+  '/simple-calculator/index.html',
+  '/simple-calculator/static/styles.css',
+  '/simple-calculator/static/script.js',
+  '/simple-calculator/static/manifest.json',
+  '/simple-calculator/README.md',
+  '/simple-calculator/static/android-chrome-192x192.png',
+  '/simple-calculator/static/android-chrome-512x512.png',
+  '/simple-calculator/static/apple-touch-icon.png',
+  '/simple-calculator/static/favicon-32x32.png',
+  '/simple-calculator/static/favicon-16x16.png',
+  '/simple-calculator/static/favicon.ico'
 ];
 
 self.addEventListener('install', event => {
